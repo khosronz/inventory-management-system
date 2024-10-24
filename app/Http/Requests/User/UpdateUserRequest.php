@@ -29,14 +29,14 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'email',
                 'max:50',
-                Rule::unique('users', 'email')->ignore($this->user)
+                Rule::unique('users', 'email')->ignore($this->user),
             ],
             'username' => [
                 'required',
                 'min:4',
                 'max:25',
                 'alpha_dash:ascii',
-                Rule::unique('users', 'username')->ignore($this->user)
+                Rule::unique('users', 'username')->ignore($this->user),
             ],
         ];
     }

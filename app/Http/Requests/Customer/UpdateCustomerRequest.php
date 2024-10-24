@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Customer;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCustomerRequest extends FormRequest
 {
@@ -26,18 +26,18 @@ class UpdateCustomerRequest extends FormRequest
             'photo' => [
                 'image',
                 'file',
-                'max:1024'
+                'max:1024',
             ],
             'name' => [
                 'required',
                 'string',
-                'max:50'
+                'max:50',
             ],
             'email' => [
                 'required',
                 'email',
                 'max:50',
-                Rule::unique('customers', 'email')->ignore($this->customer)
+                Rule::unique('customers', 'email')->ignore($this->customer),
             ],
             'phone' => [
                 'required',
@@ -46,18 +46,18 @@ class UpdateCustomerRequest extends FormRequest
                 Rule::unique('customers', 'phone')->ignore($this->customer),
             ],
             'account_holder' => [
-                'max:50'
+                'max:50',
             ],
             'account_number' => [
-                'max:25'
+                'max:25',
             ],
             'bank_name' => [
-                'max:25'
+                'max:25',
             ],
             'address' => [
                 'required',
                 'string',
-                'max:100'
+                'max:100',
             ],
         ];
     }

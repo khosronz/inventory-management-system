@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Supplier;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSupplierRequest extends FormRequest
 {
@@ -26,49 +26,49 @@ class UpdateSupplierRequest extends FormRequest
             'photo' => [
                 'image',
                 'file',
-                'max:1024'
+                'max:1024',
             ],
             'name' => [
                 'required',
                 'string',
-                'max:50'
+                'max:50',
             ],
             'email' => [
                 'required',
                 'email',
                 'max:50',
-                Rule::unique('suppliers', 'email')->ignore($this->supplier)
+                Rule::unique('suppliers', 'email')->ignore($this->supplier),
             ],
             'phone' => [
                 'required',
                 'string',
                 'max:25',
-                Rule::unique('suppliers', 'phone')->ignore($this->supplier)
+                Rule::unique('suppliers', 'phone')->ignore($this->supplier),
             ],
             'shopname' => [
                 'required',
                 'string',
-                'max:50'
+                'max:50',
             ],
             'type' => [
                 'required',
                 'string',
-                'max:25'
+                'max:25',
             ],
             'account_holder' => [
-                'max:50'
+                'max:50',
             ],
             'account_number' => [
-                'max:25'
+                'max:25',
             ],
             'bank_name' => [
-                'max:25'
+                'max:25',
             ],
             'address' => [
                 'required',
                 'string',
-                'max:100'
-            ]
+                'max:100',
+            ],
         ];
     }
 }

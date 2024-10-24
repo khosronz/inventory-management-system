@@ -4,11 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Purchase;
-use App\Models\User;
-use App\Models\Customer;
 use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,17 +19,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-                //UserSeeder::class,
+            //UserSeeder::class,
             CategorySeeder::class,
             UnitSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
         ]);
 
         $orders = Order::factory(50)->create();
         $customers = Customer::factory(30)
             ->recycle($orders)
             ->create();
-
 
         $purchases = Purchase::factory(60)->create();
         $suppliers = Supplier::factory(20)->create();
@@ -41,7 +40,7 @@ class DatabaseSeeder extends Seeder
 
         $admin = User::factory()->create([
             'name' => 'admin',
-            'email' => 'admin@admin.com'
+            'email' => 'admin@admin.com',
         ]);
 
         /*

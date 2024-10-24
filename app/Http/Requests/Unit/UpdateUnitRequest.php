@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Unit;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUnitRequest extends FormRequest
 {
@@ -25,17 +25,17 @@ class UpdateUnitRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                Rule::unique('units')->ignore($this->unit)
+                Rule::unique('units')->ignore($this->unit),
             ],
             'slug' => [
                 'required',
                 'alpha_dash',
-                Rule::unique('units')->ignore($this->unit)
+                Rule::unique('units')->ignore($this->unit),
             ],
             'short_code' => [
                 'required',
-                Rule::unique('units')->ignore($this->unit)
-            ]
+                Rule::unique('units')->ignore($this->unit),
+            ],
         ];
     }
 }

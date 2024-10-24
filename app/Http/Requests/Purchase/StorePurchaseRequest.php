@@ -16,10 +16,10 @@ class StorePurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'supplier_id'   => 'required',
-            'date'          => 'required|string',
-            'total_amount'  => 'required|numeric',
-            'status'        => 'required',
+            'supplier_id' => 'required',
+            'date' => 'required|string',
+            'total_amount' => 'required|numeric',
+            'status' => 'required',
         ];
     }
 
@@ -30,9 +30,9 @@ class StorePurchaseRequest extends FormRequest
                 'table' => 'purchases',
                 'field' => 'purchase_no',
                 'length' => 10,
-                'prefix' => 'PRS-'
+                'prefix' => 'PRS-',
             ]),
-            'status'     => PurchaseStatus::PENDING->value,
+            'status' => PurchaseStatus::PENDING->value,
             'created_by' => auth()->user()->id,
         ]);
     }

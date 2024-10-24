@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -81,10 +79,10 @@ class ProductSeeder extends Seeder
                 'notes' => null,
                 'category_id' => 5,
                 'unit_id' => 3,
-            ]
+            ],
         ]);
 
-        $products->each(function ($product){
+        $products->each(function ($product) {
             Product::create($product);
         });
     }

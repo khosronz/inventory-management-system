@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unit;
 use App\Http\Requests\Unit\StoreUnitRequest;
 use App\Http\Requests\Unit\UpdateUnitRequest;
+use App\Models\Unit;
 
 class UnitController extends Controller
 {
@@ -29,7 +29,7 @@ class UnitController extends Controller
         $unit->loadMissing('products')->get();
 
         return view('units.show', [
-            'unit' => $unit
+            'unit' => $unit,
         ]);
     }
 
@@ -45,7 +45,7 @@ class UnitController extends Controller
     public function edit(Unit $unit)
     {
         return view('units.edit', [
-            'unit' => $unit
+            'unit' => $unit,
         ]);
     }
 

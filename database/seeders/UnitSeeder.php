@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Unit;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UnitSeeder extends Seeder
 {
@@ -17,21 +16,21 @@ class UnitSeeder extends Seeder
             [
                 'name' => 'Meters',
                 'slug' => 'meters',
-                'short_code' => 'm'
+                'short_code' => 'm',
             ],
             [
                 'name' => 'Centimeters',
                 'slug' => 'centimeters',
-                'short_code' => 'cm'
+                'short_code' => 'cm',
             ],
             [
                 'name' => 'Piece',
                 'slug' => 'piece',
-                'short_code' => 'pc'
-            ]
+                'short_code' => 'pc',
+            ],
         ]);
 
-        $units->each(function ($unit){
+        $units->each(function ($unit) {
             Unit::insert($unit);
         });
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
 use App\Http\Requests\Supplier\StoreSupplierRequest;
 use App\Http\Requests\Supplier\UpdateSupplierRequest;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
@@ -13,7 +13,7 @@ class SupplierController extends Controller
         $suppliers = Supplier::all();
 
         return view('suppliers.index', [
-            'suppliers' => $suppliers
+            'suppliers' => $suppliers,
         ]);
     }
 
@@ -29,13 +29,13 @@ class SupplierController extends Controller
         /**
          * Handle upload an image
          */
-        if($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
 
             $file->storeAs('suppliers/', $filename, 'public');
             $supplier->update([
-                'photo' => $filename
+                'photo' => $filename,
             ]);
         }
 
@@ -49,14 +49,14 @@ class SupplierController extends Controller
         $supplier->loadMissing('purchases')->get();
 
         return view('suppliers.show', [
-            'supplier' => $supplier
+            'supplier' => $supplier,
         ]);
     }
 
     public function edit(Supplier $supplier)
     {
         return view('suppliers.edit', [
-            'supplier' => $supplier
+            'supplier' => $supplier,
         ]);
     }
 
@@ -68,11 +68,11 @@ class SupplierController extends Controller
         /**
          * Handle upload image with Storage.
          */
-        if($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
 
             // Delete Old Photo
-            if($supplier->photo){
-                unlink(public_path('storage/suppliers/') . $supplier->photo);
+            if ($supplier->photo) {
+                unlink(public_path('storage/suppliers/').$supplier->photo);
             }
 
             // Prepare New Photo
@@ -84,7 +84,7 @@ class SupplierController extends Controller
 
             // Save DB
             $supplier->update([
-                'photo' => $fileName
+                'photo' => $fileName,
             ]);
         }
 
@@ -98,8 +98,8 @@ class SupplierController extends Controller
         /**
          * Delete photo if exists.
          */
-        if($supplier->photo){
-            unlink(public_path('storage/suppliers/') . $supplier->photo);
+        if ($supplier->photo) {
+            unlink(public_path('storage/suppliers/').$supplier->photo);
         }
 
         $supplier->delete();

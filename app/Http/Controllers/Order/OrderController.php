@@ -82,7 +82,7 @@ class OrderController extends Controller
 
         foreach ($products as $product) {
             Product::where('id', $product->product_id)
-                ->update(['quantity' => DB::raw('quantity-' . $product->quantity)]);
+                ->update(['quantity' => DB::raw('quantity-'.$product->quantity)]);
         }
 
         $order->update([

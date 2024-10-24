@@ -24,13 +24,13 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'unique:categories,name'
+                'unique:categories,name',
             ],
             'slug' => [
                 'required',
                 'unique:categories,slug',
-                'alpha_dash'
-            ]
+                'alpha_dash',
+            ],
         ];
     }
 }

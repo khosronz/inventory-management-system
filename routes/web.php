@@ -1,23 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\Order\OrderController;
-use App\Http\Controllers\Order\DueOrderController;
-use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\Purchase\PurchaseController;
-use App\Http\Controllers\Order\OrderPendingController;
-use App\Http\Controllers\Order\OrderCompleteController;
-use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Dashboards\DashboardController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\Order\DueOrderController;
+use App\Http\Controllers\Order\OrderCompleteController;
+use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Order\OrderPendingController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\ProductExportController;
 use App\Http\Controllers\Product\ProductImportController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Purchase\PurchaseController;
+use App\Http\Controllers\Quotation\QuotationController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,7 +104,7 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('test/', function (){
-//    return view('test');
+Route::get('test/', function () {
+    //    return view('test');
     return view('orders.create');
 });

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -34,14 +34,14 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         return view('categories.show', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 
     public function edit(Category $category)
     {
         return view('categories.edit', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 

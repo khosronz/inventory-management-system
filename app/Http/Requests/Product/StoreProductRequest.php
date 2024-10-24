@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Product;
 
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Http\FormRequest;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreProductRequest extends FormRequest
 {
@@ -24,18 +24,18 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_image'     => 'image|file|max:2048',
-            'name'              => 'required|string',
-            'slug'              => 'required|unique:products',
-            'category_id'       => 'required|integer',
-            'unit_id'           => 'required|integer',
-            'quantity'          => 'required|integer',
-            'buying_price'      => 'required|integer',
-            'selling_price'     => 'required|integer',
-            'quantity_alert'    => 'required|integer',
-            'tax'               => 'nullable|numeric',
-            'tax_type'          => 'nullable|integer',
-            'notes'             => 'nullable|max:1000'
+            'product_image' => 'image|file|max:2048',
+            'name' => 'required|string',
+            'slug' => 'required|unique:products',
+            'category_id' => 'required|integer',
+            'unit_id' => 'required|integer',
+            'quantity' => 'required|integer',
+            'buying_price' => 'required|integer',
+            'selling_price' => 'required|integer',
+            'quantity_alert' => 'required|integer',
+            'tax' => 'nullable|numeric',
+            'tax_type' => 'nullable|integer',
+            'notes' => 'nullable|max:1000',
         ];
     }
 
@@ -47,8 +47,8 @@ class StoreProductRequest extends FormRequest
                 'table' => 'products',
                 'field' => 'code',
                 'length' => 4,
-                'prefix' => 'PC'
-            ])
+                'prefix' => 'PC',
+            ]),
         ]);
     }
 }

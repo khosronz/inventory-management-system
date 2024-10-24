@@ -25,7 +25,7 @@ class PurchaseFactory extends Factory
             'purchase_no' => fake()->randomElement([1, 2, 3, 4, 5]),
             'status' => fake()->randomElement(PurchaseStatus::cases()),
             'total_amount' => fake()->randomNumber(2),
-            'created_by' => User::factory()
+            'created_by' => User::factory(),
         ];
     }
 }

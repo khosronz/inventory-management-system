@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Order;
 
-use App\Models\Order;
-use App\Models\Customer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Order;
+use Illuminate\Http\Request;
 
 class DueOrderController extends Controller
 {
@@ -17,7 +17,7 @@ class DueOrderController extends Controller
             ->paginate();
 
         return view('due.index', [
-            'orders' => $orders
+            'orders' => $orders,
         ]);
     }
 
@@ -26,7 +26,7 @@ class DueOrderController extends Controller
         $order->loadMissing(['customer', 'details'])->get();
 
         return view('due.show', [
-           'order' => $order
+            'order' => $order,
         ]);
     }
 
@@ -38,14 +38,14 @@ class DueOrderController extends Controller
 
         return view('due.edit', [
             'order' => $order,
-            'customers' => $customers
+            'customers' => $customers,
         ]);
     }
 
     public function update(Order $order, Request $request)
     {
         $rules = [
-            'pay' => 'required|numeric'
+            'pay' => 'required|numeric',
         ];
 
         $validatedData = $request->validate($rules);
@@ -58,7 +58,7 @@ class DueOrderController extends Controller
 
         $order->update([
             'due' => $paidDue,
-            'pay' => $paidPay
+            'pay' => $paidPay,
         ]);
 
         return redirect()

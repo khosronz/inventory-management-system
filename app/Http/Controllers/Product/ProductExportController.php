@@ -14,7 +14,7 @@ class ProductExportController extends Controller
     {
         $products = Product::all()->sortBy('product_name');
 
-        $product_array [] = array(
+        $product_array[] = [
             'Product Name',
             'Category Id',
             'Unit Id',
@@ -23,20 +23,19 @@ class ProductExportController extends Controller
             'Buying Price',
             'Selling Price',
             'Product Image',
-        );
+        ];
 
-        foreach($products as $product)
-        {
-            $product_array[] = array(
+        foreach ($products as $product) {
+            $product_array[] = [
                 'Product Name' => $product->name,
                 'Category Id' => $product->category_id,
                 'Unit Id' => $product->unit_id,
                 'Product Code' => $product->code,
                 'Stock' => $product->quantity,
-                'Buying Price' =>$product->buying_price,
-                'Selling Price' =>$product->selling_price,
+                'Buying Price' => $product->buying_price,
+                'Selling Price' => $product->selling_price,
                 'Product Image' => $product->product_image,
-            );
+            ];
         }
 
         $this->store($product_array);
@@ -48,7 +47,7 @@ class ProductExportController extends Controller
         ini_set('memory_limit', '4000M');
 
         try {
-            $spreadSheet = new Spreadsheet();
+            $spreadSheet = new Spreadsheet;
             $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(20);
             $spreadSheet->getActiveSheet()->fromArray($products);
             $Excel_writer = new Xls($spreadSheet);

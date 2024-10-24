@@ -44,7 +44,7 @@ class PurchaseController extends Controller
 
         return view('purchases.details-purchase', [
             'purchase' => $purchase,
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
@@ -172,7 +172,7 @@ class PurchaseController extends Controller
             'Quantity',
             'Unitcost',
             'Total',
-            'Created By'
+            'Created By',
         ];
 
         foreach ($purchases as $purchase) {
@@ -197,7 +197,7 @@ class PurchaseController extends Controller
         ini_set('memory_limit', '4000M');
 
         try {
-            $spreadSheet = new Spreadsheet();
+            $spreadSheet = new Spreadsheet;
             $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(20);
             $spreadSheet->getActiveSheet()->fromArray($products);
             $Excel_writer = new Xls($spreadSheet);

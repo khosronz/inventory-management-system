@@ -82,20 +82,11 @@ class QuotationController extends Controller
             ->with('success', 'Quotation Created!');
     }
 
-    public function show()
-    {
+    public function show() {}
 
-    }
+    public function edit() {}
 
-    public function edit()
-    {
-
-    }
-
-    public function update()
-    {
-
-    }
+    public function update() {}
 
     public function destroy(Quotation $quotation)
     {

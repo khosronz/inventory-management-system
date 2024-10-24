@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('date'); // old: purchase_date
             $table->string('purchase_no'); // old: purchase_no
 
-            $table->tinyInteger('status' )  // old: purchase_status
+            $table->tinyInteger('status')  // old: purchase_status
                 ->default(0)
                 ->comment('0=Pending, 1=Approved');
 

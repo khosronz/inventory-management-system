@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -26,30 +26,27 @@ class ProfileController extends Controller
             'name' => 'required|max:50',
             'photo' => 'image|file|max:1024',
             'email' => 'required|email|max:50|unique:users,email,'.$user->id,
-            'username' => 'required|min:4|max:25|alpha_dash:ascii|unique:users,username,'.$user->id
+            'username' => 'required|min:4|max:25|alpha_dash:ascii|unique:users,username,'.$user->id,
         ];
 
         $validatedData = $request->validate($rules);
 
-        if ($validatedData['email'] != $user->email)
-        {
+        if ($validatedData['email'] != $user->email) {
             $validatedData['email_verified_at'] = null;
         }
 
         /**
          * Handle upload image
          */
-        if ($file = $request->file('photo'))
-        {
+        if ($file = $request->file('photo')) {
             $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
             $path = 'public/profile/';
 
             /**
              * Delete an image if exists.
              */
-            if($user->photo)
-            {
-                Storage::delete($path . $user->photo);
+            if ($user->photo) {
+                Storage::delete($path.$user->photo);
             }
 
             /**

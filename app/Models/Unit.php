@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
@@ -17,7 +17,7 @@ class Unit extends Model
     protected $fillable = [
         'name',
         'slug',
-        'short_code'
+        'short_code',
     ];
 
     protected $casts = [

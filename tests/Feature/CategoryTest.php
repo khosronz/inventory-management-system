@@ -79,7 +79,7 @@ class CategoryTest extends TestCase
         $user = $this->createUser();
         $this->actingAs($user);
 
-        $this->delete('/categories/'. $category->slug);
+        $this->delete('/categories/'.$category->slug);
 
         $this->assertDatabaseCount('categories', 0);
 

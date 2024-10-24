@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Enums\TaxType;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -29,13 +29,13 @@ class Product extends Model
         'category_id',
         'unit_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'tax_type' => TaxType::class
+        'tax_type' => TaxType::class,
     ];
 
     public function getRouteKeyName(): string

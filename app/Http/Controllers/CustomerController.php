@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
+use App\Models\Customer;
 
 class CustomerController extends Controller
 {
@@ -13,7 +13,7 @@ class CustomerController extends Controller
         $customers = Customer::all();
 
         return view('customers.index', [
-            'customers' => $customers
+            'customers' => $customers,
         ]);
     }
 
@@ -29,14 +29,13 @@ class CustomerController extends Controller
         /**
          * Handle upload an image
          */
-        if($request->hasFile('photo'))
-        {
+        if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
 
             $file->storeAs('customers/', $filename, 'public');
             $customer->update([
-                'photo' => $filename
+                'photo' => $filename,
             ]);
         }
 
@@ -50,14 +49,14 @@ class CustomerController extends Controller
         $customer->loadMissing(['quotations', 'orders'])->get();
 
         return view('customers.show', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 
     public function edit(Customer $customer)
     {
         return view('customers.edit', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 
@@ -66,11 +65,11 @@ class CustomerController extends Controller
         //
         $customer->update($request->except('photo'));
 
-        if($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
 
             // Delete Old Photo
-            if($customer->photo){
-                unlink(public_path('storage/customers/') . $customer->photo);
+            if ($customer->photo) {
+                unlink(public_path('storage/customers/').$customer->photo);
             }
 
             // Prepare New Photo
@@ -82,7 +81,7 @@ class CustomerController extends Controller
 
             // Save DB
             $customer->update([
-                'photo' => $fileName
+                'photo' => $fileName,
             ]);
         }
 
@@ -93,9 +92,8 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
-        if($customer->photo)
-        {
-            unlink(public_path('storage/customers/') . $customer->photo);
+        if ($customer->photo) {
+            unlink(public_path('storage/customers/').$customer->photo);
         }
 
         $customer->delete();
