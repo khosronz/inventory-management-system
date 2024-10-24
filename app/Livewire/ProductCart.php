@@ -54,10 +54,10 @@ class ProductCart extends Component
                 $this->unit_price[$cart_item->id] = $cart_item->price;
                 $this->discount_type[$cart_item->id] = $cart_item->options->product_discount_type;
 
-                if ($cart_item->options->product_discount_type == 'fixed') {
+                if ($cart_item->options->product_discount_type === 'fixed') {
                     $this->item_discount[$cart_item->id] = $cart_item->options->product_discount;
-                } elseif ($cart_item->options->product_discount_type == 'percentage') {
-                    $this->item_discount[$cart_item->id] = round(100 * ($cart_item->options->product_discount / $cart_item->price));
+                } elseif ($cart_item->options->product_discount_type === 'percentage') {
+                    $this->item_discount[$cart_item->id] = round(100 * $cart_item->options->product_discount / $cart_item->price);
                 }
             }
         } else {
@@ -86,7 +86,7 @@ class ProductCart extends Component
         $cart = Cart::instance($this->cart_instance);
 
         $exists = $cart->search(function ($cartItem, $rowId) use ($product) {
-            return $cartItem->id == $product['id'];
+            return $cartItem->id === $product['id'];
         });
 
         if ($exists->isNotEmpty()) {
@@ -139,7 +139,7 @@ class ProductCart extends Component
 
     public function updateQuantity($row_id, $product_id): void
     {
-        if ($this->cart_instance == 'sale' || $this->cart_instance == 'purchase_return' || $this->cart_instance == 'quotation') {
+        if ($this->cart_instance === 'sale' || $this->cart_instance === 'purchase_return' || $this->cart_instance === 'quotation') {
             if ($this->check_quantity[$product_id] < $this->quantity[$product_id]) {
                 session()->flash('message', 'The requested quantity is not available in stock.');
 
@@ -179,21 +179,21 @@ class ProductCart extends Component
     {
         $cart_item = Cart::instance($this->cart_instance)->get($row_id);
 
-        if ($this->discount_type[$product_id] == 'fixed') {
+        if ($this->discount_type[$product_id] === 'fixed') {
             Cart::instance($this->cart_instance)
                 ->update($row_id, [
-                    'price' => ($cart_item->price + $cart_item->options->product_discount) - $this->item_discount[$product_id],
+                    'price' => $cart_item->price + $cart_item->options->product_discount - $this->item_discount[$product_id],
                 ]);
 
             $discount_amount = $this->item_discount[$product_id];
 
             $this->updateCartOptions($row_id, $product_id, $cart_item, $discount_amount);
-        } elseif ($this->discount_type[$product_id] == 'percentage') {
-            $discount_amount = ($cart_item->price + $cart_item->options->product_discount) * ($this->item_discount[$product_id] / 100);
+        } elseif ($this->discount_type[$product_id] === 'percentage') {
+            $discount_amount = ($cart_item->price + $cart_item->options->product_discount) * $this->item_discount[$product_id] / 100;
 
             Cart::instance($this->cart_instance)
                 ->update($row_id, [
-                    'price' => ($cart_item->price + $cart_item->options->product_discount) - $discount_amount,
+                    'price' => $cart_item->price + $cart_item->options->product_discount - $discount_amount,
                 ]);
 
             $this->updateCartOptions($row_id, $product_id, $cart_item, $discount_amount);
@@ -232,7 +232,7 @@ class ProductCart extends Component
         } else {
             $this->unit_price[$product['id']] = $product['selling_price']; // selling price?
 
-            if ($this->cart_instance == 'purchase' || $this->cart_instance == 'purchase_return') {
+            if ($this->cart_instance === 'purchase' || $this->cart_instance === 'purchase_return') {
                 $this->unit_price[$product['id']] = $product['product_cost'];
             }
 
@@ -243,19 +243,16 @@ class ProductCart extends Component
         $product_tax = 0;
         $sub_total = 0;
 
-        if ($product['tax_type'] == 1) {
-            $price = $product_price + ($product_price * ($product['tax'] / 100));
+        if ($product['tax_type'] === 1) {
+            $price = $product_price + ($product_price * $product['tax'] / 100);
             $unit_price = $product_price;
-            $product_tax = $product_price * ($product['tax'] / 100);
-            $sub_total = $product_price + ($product_price * ($product['tax'] / 100));
-
-        } elseif ($product['tax_type'] == 2) {
-
+            $product_tax = $product_price * $product['tax'] / 100;
+            $sub_total = $product_price + ($product_price * $product['tax'] / 100);
+        } elseif ($product['tax_type'] === 2) {
             $price = $product_price;
-            $unit_price = $product_price - ($product_price * ($product['tax'] / 100));
-            $product_tax = $product_price * ($product['tax'] / 100);
+            $unit_price = $product_price - ($product_price * $product['tax'] / 100);
+            $product_tax = $product_price * $product['tax'] / 100;
             $sub_total = $product_price;
-
         } else {
             $price = $product_price;
             $unit_price = $product_price;
@@ -277,6 +274,7 @@ class ProductCart extends Component
             'unit_price' => $cart_item->options->unit_price,
             'product_discount' => $discount_amount,
             'product_discount_type' => $this->discount_type[$product_id],
-        ]]);
+        ],
+        ]);
     }
 }

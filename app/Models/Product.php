@@ -12,8 +12,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
     public $fillable = [
         'name',
         'slug',
@@ -31,6 +29,8 @@ class Product extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected $guarded = ['id'];
 
     protected $casts = [
         'created_at' => 'datetime',
@@ -53,6 +53,12 @@ class Product extends Model
         return $this->belongsTo(Unit::class);
     }
 
+    public function scopeSearch($query, $value): void
+    {
+        $query->where('name', 'like', "%{$value}%")
+            ->orWhere('code', 'like', "%{$value}%");
+    }
+
     protected function buyingPrice(): Attribute
     {
         return Attribute::make(
@@ -67,11 +73,5 @@ class Product extends Model
             get: fn ($value) => $value / 100,
             set: fn ($value) => $value * 100,
         );
-    }
-
-    public function scopeSearch($query, $value): void
-    {
-        $query->where('name', 'like', "%{$value}%")
-            ->orWhere('code', 'like', "%{$value}%");
     }
 }

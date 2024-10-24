@@ -9,7 +9,6 @@ class ProductController
 {
     public function index(Request $request)
     {
-
         $products = Product::all();
 
         if ($request->has('category_id')) {

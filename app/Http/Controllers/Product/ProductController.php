@@ -68,7 +68,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         // Generate a barcode
-        $generator = new BarcodeGeneratorHTML;
+        $generator = new BarcodeGeneratorHTML();
 
         $barcode = $generator->getBarcode($product->code, $generator::TYPE_CODE_128);
 
@@ -92,7 +92,6 @@ class ProductController extends Controller
         $product->update($request->except('product_image'));
 
         if ($request->hasFile('product_image')) {
-
             // Delete Old Photo
             if ($product->product_image) {
                 unlink(public_path('storage/products/').$product->product_image);

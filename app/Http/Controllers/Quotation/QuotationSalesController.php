@@ -6,5 +6,4 @@ use App\Http\Controllers\Controller;
 
 class QuotationSalesController extends Controller
 {
-    //
 }

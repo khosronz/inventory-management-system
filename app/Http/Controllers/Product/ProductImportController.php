@@ -47,7 +47,6 @@ class ProductImportController extends Controller
             }
 
             Product::insert($data);
-
         } catch (Exception $e) {
             // $error_code = $e->errorInfo[1];
             return redirect()

@@ -54,7 +54,7 @@ final class CustomersTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
 
-            /** Example of custom column using a closure **/
+            /** Example of custom column using a closure */
             ->addColumn('name_lower', fn (Customer $model) => strtolower(e($model->name)))
 
             ->addColumn('email')

@@ -31,7 +31,7 @@ class ProfileController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if ($validatedData['email'] != $user->email) {
+        if ($validatedData['email'] !== $user->email) {
             $validatedData['email_verified_at'] = null;
         }
 

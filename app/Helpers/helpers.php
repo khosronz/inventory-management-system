@@ -3,11 +3,9 @@
 if (! function_exists('settings')) {
     function settings()
     {
-        $settings = cache()->remember('settings', 24 * 60, function () {
+        return cache()->remember('settings', 24 * 60, function () {
             //return \Modules\Setting\Entities\Setting::firstOrFail();
         });
-
-        return $settings;
     }
 }
 
@@ -24,7 +22,7 @@ if (! function_exists('format_currency')) {
         $decimal_separator = $settings->currency->decimal_separator ?? '.';
         $thousand_separator = $settings->currency->thousand_separator ?? ',';
 
-        if ($position == 'prefix') {
+        if ($position === 'prefix') {
             $formatted_value = $symbol.number_format((float) $value, 2, $decimal_separator, $thousand_separator);
         } else {
             $formatted_value = number_format((float) $value, 2, $decimal_separator, $thousand_separator).$symbol;
@@ -37,9 +35,7 @@ if (! function_exists('format_currency')) {
 if (! function_exists('make_reference_id')) {
     function make_reference_id($prefix, $number)
     {
-        $padded_text = $prefix.'-'.str_pad($number, 5, 0, STR_PAD_LEFT);
-
-        return $padded_text;
+        return $prefix.'-'.str_pad($number, 5, 0, STR_PAD_LEFT);
     }
 }
 

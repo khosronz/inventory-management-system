@@ -22,7 +22,6 @@ class CategoryTable extends Component
     {
         if ($this->sortField === $field) {
             $this->sortAsc = ! $this->sortAsc;
-
         } else {
             $this->sortAsc = true;
         }

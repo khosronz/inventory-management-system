@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Quotation;
 
-use App\Enums\QuotationStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Quotation\StoreQuotationRequest;
 use App\Models\Customer;
@@ -82,11 +81,17 @@ class QuotationController extends Controller
             ->with('success', 'Quotation Created!');
     }
 
-    public function show() {}
+    public function show()
+    {
+    }
 
-    public function edit() {}
+    public function edit()
+    {
+    }
 
-    public function update() {}
+    public function update()
+    {
+    }
 
     public function destroy(Quotation $quotation)
     {

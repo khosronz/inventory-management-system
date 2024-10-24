@@ -63,7 +63,6 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-
         //        if ($validatedData['email'] != $user->email) {
         //            $validatedData['email_verified_at'] = null;
         //        }
@@ -74,7 +73,6 @@ class UserController extends Controller
          * Handle upload image with Storage.
          */
         if ($request->hasFile('photo')) {
-
             // Delete Old Photo
             if ($user->photo) {
                 unlink(public_path('storage/profile/').$user->photo);

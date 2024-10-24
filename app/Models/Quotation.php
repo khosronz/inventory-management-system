@@ -54,6 +54,13 @@ class Quotation extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function scopeSearch($query, $value): void
+    {
+        $query->where('reference', 'like', "%{$value}%")
+            ->orWhere('customer_name', 'like', "%{$value}%")
+            ->orWhere('status', 'like', "%{$value}%");
+    }
+
     protected function shippingAmount(): Attribute
     {
         return Attribute::make(
@@ -84,12 +91,5 @@ class Quotation extends Model
             get: fn ($value) => $value / 100,
             set: fn ($value) => $value * 100,
         );
-    }
-
-    public function scopeSearch($query, $value): void
-    {
-        $query->where('reference', 'like', "%{$value}%")
-            ->orWhere('customer_name', 'like', "%{$value}%")
-            ->orWhere('status', 'like', "%{$value}%");
     }
 }

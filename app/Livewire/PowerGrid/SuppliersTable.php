@@ -84,7 +84,7 @@ final class SuppliersTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            //
+
         ];
     }
 

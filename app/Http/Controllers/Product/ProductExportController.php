@@ -47,7 +47,7 @@ class ProductExportController extends Controller
         ini_set('memory_limit', '4000M');
 
         try {
-            $spreadSheet = new Spreadsheet;
+            $spreadSheet = new Spreadsheet();
             $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(20);
             $spreadSheet->getActiveSheet()->fromArray($products);
             $Excel_writer = new Xls($spreadSheet);
@@ -56,7 +56,7 @@ class ProductExportController extends Controller
             header('Cache-Control: max-age=0');
             ob_end_clean();
             $Excel_writer->save('php://output');
-            exit();
+            exit;
         } catch (Exception $e) {
             return;
         }

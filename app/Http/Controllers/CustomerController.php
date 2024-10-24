@@ -62,11 +62,9 @@ class CustomerController extends Controller
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
         $customer->update($request->except('photo'));
 
         if ($request->hasFile('photo')) {
-
             // Delete Old Photo
             if ($customer->photo) {
                 unlink(public_path('storage/customers/').$customer->photo);

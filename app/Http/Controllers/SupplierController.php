@@ -62,14 +62,12 @@ class SupplierController extends Controller
 
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        //
         $supplier->update($request->except('photo'));
 
         /**
          * Handle upload image with Storage.
          */
         if ($request->hasFile('photo')) {
-
             // Delete Old Photo
             if ($supplier->photo) {
                 unlink(public_path('storage/suppliers/').$supplier->photo);

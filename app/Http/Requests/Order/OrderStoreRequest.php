@@ -39,7 +39,7 @@ class OrderStoreRequest extends FormRequest
                 'length' => 10,
                 'prefix' => 'INV-',
             ]),
-            'due' => (Cart::instance('order')->total() - $this->pay),
+            'due' => Cart::instance('order')->total() - $this->pay,
         ]);
     }
 }

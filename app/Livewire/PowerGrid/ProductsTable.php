@@ -108,7 +108,7 @@ final class ProductsTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            //
+
         ];
     }
 

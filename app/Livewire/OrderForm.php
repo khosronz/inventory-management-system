@@ -13,8 +13,6 @@ class OrderForm extends Component
 {
     public $cart_instance;
 
-    private $product;
-
     #[Validate('Required')]
     public int $taxes = 0;
 
@@ -22,6 +20,8 @@ class OrderForm extends Component
 
     #[Validate('required', message: 'Please select products')]
     public Collection $allProducts;
+
+    private $product;
 
     public function mount($cartInstance): void
     {
@@ -94,7 +94,6 @@ class OrderForm extends Component
         $this->invoiceProducts[$index]['product_price'] = $product->buying_price;
         $this->invoiceProducts[$index]['is_saved'] = true;
 
-        //
         $cart = Cart::instance($this->cart_instance);
 
         $exists = $cart->search(function ($cartItem) use ($product) {

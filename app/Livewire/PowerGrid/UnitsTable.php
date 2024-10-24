@@ -93,7 +93,7 @@ final class UnitsTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            //
+
         ];
     }
 
